@@ -11,7 +11,7 @@ import {
   notify,
   notifyWarning,
 } from "../js/notify";
-import { Token } from "@cashu/cashu-ts";
+import { getDecodedTokenBinary, getEncodedToken, Token } from "@cashu/cashu-ts";
 import { useSwapStore } from "./swap";
 import { Clipboard } from "@capacitor/clipboard";
 
@@ -177,10 +177,8 @@ export const useReceiveTokensStore = defineStore("receiveTokensStore", {
                             "binary data does not contain a cashu token"
                           );
                         }
-                        // TODO: decode the binary token from data
-                        throw new Error(
-                          "binary token parsing not implemented yet"
-                        );
+                        const token = getDecodedTokenBinary(data);
+                        tokenStr = getEncodedToken(token);
                         break;
                       default:
                         throw new Error(`unsupported recordType ${recordType}`);

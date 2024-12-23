@@ -456,7 +456,12 @@ import { Buffer } from "buffer";
 import { useCameraStore } from "src/stores/camera";
 import { useP2PKStore } from "src/stores/p2pk";
 import TokenInformation from "components/TokenInformation.vue";
-import { getDecodedToken, getEncodedTokenV4 } from "@cashu/cashu-ts";
+import {
+  getDecodedToken,
+  getEncodedTokenBinary,
+  getEncodedToken,
+  getEncodedTokenV4,
+} from "@cashu/cashu-ts";
 
 import { mapActions, mapState, mapWritableState } from "pinia";
 import ChooseMint from "components/ChooseMint.vue";
@@ -477,7 +482,6 @@ import {
   notify,
   notifyWarning,
 } from "src/js/notify.ts";
-import { getEncodedTokenV3 } from "@cashu/cashu-ts/dist/lib/es5/utils";
 export default defineComponent({
   name: "SendTokenDialog",
   mixins: [windowMixin],
@@ -751,10 +755,14 @@ export default defineComponent({
           this.sendData.tokensBase64 = getEncodedTokenV4(decodedToken);
         } catch {
           console.log("### Could not encode token to V4");
-          this.sendData.tokensBase64 = getEncodedTokenV3(decodedToken);
+          this.sendData.tokensBase64 = getEncodedToken(decodedToken, {
+            version: 3,
+          });
         }
       } else {
-        this.sendData.tokensBase64 = getEncodedTokenV3(decodedToken);
+        this.sendData.tokensBase64 = getEncodedToken(decodedToken, {
+          version: 3,
+        });
       }
     },
     deleteThisToken: function () {
@@ -805,9 +813,8 @@ export default defineComponent({
                       ];
                       break;
                     case "binary":
-                      throw new Error("Binary encoding not supported yet");
-                    /*
-                      const data = null;
+                      const token = getDecodedToken(this.sendData.tokensBase64);
+                      const data = getEncodedTokenBinary(token);
                       records = [
                         {
                           recordType: "mime",
@@ -816,7 +823,6 @@ export default defineComponent({
                         },
                       ];
                       break;
-                      */
                     default:
                       throw new Error(
                         `Unknown NFC encoding: ${this.nfcEncoding}`

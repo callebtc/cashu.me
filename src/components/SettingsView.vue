@@ -568,11 +568,6 @@
                 </q-item-label>
               </q-item-section>
             </q-item>
-            <!--
-              disable binary for now
-              TODO: re-enable once we can decode
-            -->
-            <!--
             <q-item clickable @click="nfcEncoding = 'binary'">
               <q-item-section avatar>
                 <q-icon
@@ -586,13 +581,12 @@
                 />
               </q-item-section>
               <q-item-section>
-                <q-item-label title>Raw Binary</q-item-label>
+                <q-item-label title>Binary</q-item-label>
                 <q-item-label caption>
-                  Raw bytes instead of Base64. Makes ~33% shorter tokens.
+                  Store tokens as binary data
                 </q-item-label>
               </q-item-section>
             </q-item>
-            -->
             <q-item>
               <q-toggle
                 v-model="showNfcButtonInDrawer"
