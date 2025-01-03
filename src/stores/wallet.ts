@@ -135,15 +135,10 @@ export const useWalletStore = defineStore("wallet", {
         lnurlauth: {},
         input: {
           request: "",
-          amount: null,
+          amount: undefined,
           comment: "",
           quote: "",
-        } as {
-          request: string;
-          amount: number | null;
-          comment: string;
-          quote: string;
-        },
+        } as { request: string, amount: number | undefined, comment: string, quote: string },
       },
     };
   },
@@ -706,10 +701,8 @@ export const useWalletStore = defineStore("wallet", {
         const data = await this.meltQuote(mintWallet, payload.request);
         mintStore.assertMintError(data);
         this.payInvoiceData.meltQuote.response = data;
-        this.payInvoiceData.blocking = false;
         return data;
       } catch (error: any) {
-        this.payInvoiceData.blocking = false;
         this.payInvoiceData.meltQuote.error = error;
         console.error(error);
         notifyApiError(error);
@@ -717,12 +710,20 @@ export const useWalletStore = defineStore("wallet", {
       } finally {
       }
     },
-    meltQuote: async function (
-      wallet: CashuWallet,
-      request: string
-    ): Promise<MeltQuoteResponse> {
+    meltQuote: async function (wallet: CashuWallet, request: string, mpp_amount: number | undefined = undefined): Promise<MeltQuoteResponse> {
+      // const payload: MeltQuotePayload = {
+      //   unit: mintStore.activeUnit,
+      //   request: this.payInvoiceData.input.request,
+      // };
+      // this.payInvoiceData.meltQuote.payload = payload;
+      // const data = await mintStore.activeMint().api.createMeltQuote(payload);
+      // const data = await this.wallet.createMeltQuote(this.payInvoiceData.input.request, { mpp_amount: this.payInvoiceData.input.amount });
       const mintStore = useMintsStore();
-      const data = await wallet.createMeltQuote(request);
+      let options = {};
+      if (mpp_amount) {
+        options = { mpp: { amount: mpp_amount } };
+      }
+      const data = await wallet.createMeltQuote(request, options);
       mintStore.assertMintError(data);
       return data;
     },
@@ -835,8 +836,8 @@ export const useWalletStore = defineStore("wallet", {
 
         notifySuccess(
           "Paid " +
-            uIStore.formatCurrency(amount_paid, mintWallet.unit) +
-            " via Lightning"
+          uIStore.formatCurrency(amount_paid, mintWallet.unit) +
+          " via Lightning"
         );
         console.log("#### pay lightning: token paid");
         // delete spent tokens from db
@@ -953,8 +954,6 @@ export const useWalletStore = defineStore("wallet", {
             });
           }
         }
-        // return unspent proofs
-        return spentProofs;
       } catch (error: any) {
         console.error(error);
         notifyApiError(error);
@@ -1098,10 +1097,10 @@ export const useWalletStore = defineStore("wallet", {
         const proofStore = useProofsStore();
         notifySuccess(
           "Sent " +
-            uIStore.formatCurrency(
-              proofStore.sumProofs(spentProofs),
-              historyToken.unit
-            )
+          uIStore.formatCurrency(
+            proofStore.sumProofs(spentProofs),
+            historyToken.unit
+          )
         );
       } else {
         console.log("### token not paid yet");
@@ -1183,8 +1182,8 @@ export const useWalletStore = defineStore("wallet", {
             useUiStore().vibrate();
             notifySuccess(
               "Received " +
-                uIStore.formatCurrency(invoice.amount, invoice.unit) +
-                " via Lightning"
+              uIStore.formatCurrency(invoice.amount, invoice.unit) +
+              " via Lightning"
             );
             unsub();
             return proofs;
@@ -1241,8 +1240,8 @@ export const useWalletStore = defineStore("wallet", {
         useUiStore().vibrate();
         notifySuccess(
           "Received " +
-            uIStore.formatCurrency(invoice.amount, invoice.unit) +
-            " via Lightning"
+          uIStore.formatCurrency(invoice.amount, invoice.unit) +
+          " via Lightning"
         );
         return proofs;
       } catch (error) {
@@ -1292,10 +1291,10 @@ export const useWalletStore = defineStore("wallet", {
             useUiStore().vibrate();
             notifySuccess(
               "Sent " +
-                uIStore.formatCurrency(
-                  useProofsStore().sumProofs(proofs),
-                  invoice.unit
-                )
+              uIStore.formatCurrency(
+                useProofsStore().sumProofs(proofs),
+                invoice.unit
+              )
             );
           }
           // set invoice in history to paid

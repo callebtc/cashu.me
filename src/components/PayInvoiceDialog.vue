@@ -64,6 +64,9 @@
         <div class="col-12">
           <ChooseMint />
         </div>
+        <div class="col-12">
+          <MultinutPicker />
+        </div>
         <div v-if="enoughActiveBalance" class="row q-mt-lg">
           <q-btn
             unelevated
@@ -138,7 +141,7 @@
                 autofocus
                 v-model.number="payInvoiceData.input.amount"
                 type="number"
-                :label="'Amount (' + tickerShort + ') *'"
+                :label="'MPP Amount (' + tickerShort + ') *'"
                 :min="payInvoiceData.lnurlpay.minSendable / 1000"
                 :max="payInvoiceData.lnurlpay.maxSendable / 1000"
                 :readonly="
@@ -231,19 +234,6 @@
             >
           </div>
         </q-form>
-        <!-- <div v-else>
-            <q-responsive :ratio="1">
-              <qrcode-stream
-                @decode="decodeQR"
-                class="rounded-borders"
-              ></qrcode-stream>
-            </q-responsive>
-            <div class="row q-mt-lg">
-              <q-btn @click="closeCamera" flat color="grey" class="q-ml-auto">
-                Close
-              </q-btn>
-            </div>
-          </div> -->
       </div>
     </q-card>
   </q-dialog>
@@ -262,6 +252,7 @@ import ToggleUnit from "components/ToggleUnit.vue";
 
 // import * as bolt11Decoder from "light-bolt11-decoder";
 import * as _ from "underscore";
+import MultinutPicker from "./MultinutPicker.vue";
 import { Scan as ScanIcon } from "lucide-vue-next";
 
 export default defineComponent({
@@ -270,6 +261,7 @@ export default defineComponent({
   components: {
     ChooseMint,
     ToggleUnit,
+    MultinutPicker,
     ScanIcon,
   },
   props: {},
