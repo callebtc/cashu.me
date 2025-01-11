@@ -116,6 +116,23 @@ export const useMintsStore = defineStore("mints", {
     };
   },
   getters: {
+    multiMints({ activeUnit }) {
+      return this.mints.filter((m) => {
+        try {
+          const nut15 = m.info?.nuts[15];
+          /*
+          const viableMint = nut15?.methods.find(
+            (m) => m.method === "bolt11" && m.unit === activeUnit
+          );
+          */
+          if (nut15) return true;
+          else return false;
+        } catch (e) {
+          console.error(`${e}`);
+          return false;
+        }
+      });
+    },
     activeProofs({ activeMintUrl, activeUnit }): WalletProof[] {
       const unitKeysets = this.mints
         .find((m) => m.url === activeMintUrl)
@@ -520,6 +537,20 @@ export const useMintsStore = defineStore("mints", {
         }
         throw new Error(`Mint error: ${response.error}`);
       }
+    },
+    proofsForMintAndUnit: function (
+      unit: string,
+      mint: MintClass
+    ): WalletProof[] {
+      const unitKeysets = this.mints
+        .find((m) => m.url === mint.mint.url)
+        ?.keysets?.filter((k) => k.unit === unit);
+      if (!unitKeysets) {
+        return [];
+      }
+      return this.proofs.filter((p) =>
+        unitKeysets.map((k) => k.id).includes(p.id)
+      );
     },
     // getBalance: function () {
     //   const mint = this.mints.find((m) => m.url === this.activeMintUrl);
