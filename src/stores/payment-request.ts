@@ -79,9 +79,9 @@ export const usePRStore = defineStore("payment-request", {
           }
         }
         if (!foundMint) {
-          notifyError("We do not know the mint in the payment request");
+          notifyError(`This payment requires using the mint: ${request.mints}`);
           throw new Error(
-            `We do not know the mint in the payment request: ${request.mints}`
+            `This payment requires using the mint: ${request.mints}`
           );
         }
       }
