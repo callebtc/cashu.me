@@ -4,51 +4,26 @@
       <ActivityOrb />
       <NoMintWarnBanner v-if="mints.length == 0" />
       <BalanceView v-else :set-tab="setTab" />
-      <div
-        class="row items-center justify-center no-wrap q-mb-none q-mx-none q-px-none q-pt-lg q-pb-md"
-      >
+      <div class="row items-center justify-center no-wrap q-mb-none q-mx-none q-px-none q-pt-lg q-pb-md">
         <div class="col-5 q-mb-md">
-          <q-btn
-            rounded
-            dense
-            class="q-px-md"
-            color="primary"
-            style="width: 140px"
-            @click="showReceiveDialog = true"
-            size="1.2rem"
-          >
+          <q-btn rounded dense class="q-px-md" color="primary" style="width: 140px" @click="showReceiveDialog = true"
+            size="1.2rem">
             <q-icon name="south_west" size="1.2rem" class="q-mr-xs" />
-            Receive</q-btn
-          >
+            Receive</q-btn>
         </div>
         <transition appear enter-active-class="animated pulse">
           <div class="col-2 q-mb-md q-mx-none">
-            <q-btn
-              align="center"
-              size="lg"
-              outline
-              color="primary"
-              flat
-              @click="showCamera"
-            >
+            <q-btn align="center" size="lg" outline color="primary" flat @click="showCamera">
               <ScanIcon size="2em" />
             </q-btn>
           </div>
         </transition>
         <!-- button to showSendDialog -->
         <div class="col-5 q-mb-md">
-          <q-btn
-            rounded
-            dense
-            class="q-px-md"
-            style="width: 140px"
-            color="primary"
-            @click="showSendDialog = true"
-            size="1.2rem"
-          >
+          <q-btn rounded dense class="q-px-md" style="width: 140px" color="primary" @click="showSendDialog = true"
+            size="1.2rem">
             <q-icon name="north_east" size="1.2rem" class="q-mr-xs" />
-            Send</q-btn
-          >
+            Send</q-btn>
         </div>
         <ReceiveDialog v-model="showReceiveDialog" />
         <SendDialog v-model="showSendDialog" />
@@ -59,33 +34,17 @@
       <q-expansion-item expand-icon-class="hidden" v-model="expandHistory">
         <template v-slot:header="{ expanded }">
           <q-item-section class="item-center text-center">
-            <span
-              ><q-icon
-                color="primary"
-                :name="expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
-            /></span>
+            <span><q-icon color="primary" :name="expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'" /></span>
           </q-item-section>
         </template>
-        <q-tabs
-          v-model="tab"
-          no-caps
-          :class="$q.dark.isActive ? 'bg-dark' : 'bg-white'"
-        >
+        <q-tabs v-model="tab" no-caps :class="$q.dark.isActive ? 'bg-dark' : 'bg-white'">
           <q-tab name="history" class="text-secondary" label="History"></q-tab>
-          <q-tab
-            name="invoices"
-            class="text-secondary"
-            label="Invoices"
-          ></q-tab>
+          <q-tab name="invoices" class="text-secondary" label="Invoices"></q-tab>
           <!-- <q-tab name="tokens" label="Tokens"></q-tab> -->
           <q-tab name="mints" class="text-secondary" label="Mints"></q-tab>
         </q-tabs>
 
-        <q-tab-panels
-          :class="$q.dark.isActive ? 'bg-dark' : 'bg-white'"
-          v-model="tab"
-          animated
-        >
+        <q-tab-panels :class="$q.dark.isActive ? 'bg-dark' : 'bg-white'" v-model="tab" animated>
           <!-- ////////////////// HISTORY LIST ///////////////// -->
 
           <q-tab-panel name="history">
@@ -109,18 +68,9 @@
       <div style="margin-bottom: 0rem">
         <div class="row q-pt-sm">
           <div class="col-12 q-pt-xs">
-            <q-btn
-              class="q-mx-xs q-px-sm q-my-sm"
-              outline
-              size="0.6rem"
-              v-if="
-                getPwaDisplayMode() == 'browser' &&
-                deferredPWAInstallPrompt != null
-              "
-              color="primary"
-              @click="triggerPwaInstall()"
-              ><b>Install</b><q-tooltip>Install Cashu</q-tooltip></q-btn
-            >
+            <q-btn class="q-mx-xs q-px-sm q-my-sm" outline size="0.6rem" v-if="getPwaDisplayMode() == 'browser' &&
+              deferredPWAInstallPrompt != null
+              " color="primary" @click="triggerPwaInstall()"><b>Install</b><q-tooltip>Install Cashu</q-tooltip></q-btn>
           </div>
         </div>
       </div>
@@ -142,13 +92,8 @@
     </q-dialog>
 
     <!-- WELCOME DIALOG  -->
-    <WelcomeDialog
-      :welcome-dialog="welcomeDialog"
-      :trigger-pwa-install="triggerPwaInstall"
-      :set-tab="setTab"
-      :get-pwa-display-mode="getPwaDisplayMode"
-      :set-welcome-dialog-seen="setWelcomeDialogSeen"
-    />
+    <WelcomeDialog :welcome-dialog="welcomeDialog" :trigger-pwa-install="triggerPwaInstall" :set-tab="setTab"
+      :get-pwa-display-mode="getPwaDisplayMode" :set-welcome-dialog-seen="setWelcomeDialogSeen" />
 
     <!-- INVOICE DETAILS  -->
     <InvoiceDetailDialog v-model="showInvoiceDetails" />
@@ -226,6 +171,7 @@ import ReceiveTokenDialog from "src/components/ReceiveTokenDialog.vue";
 import { useWelcomeStore } from "../stores/welcome";
 import { useInvoicesWorkerStore } from "src/stores/invoicesWorker";
 import { notifyError, notify } from "../js/notify";
+import { registerBroadcastChannel } from "src/js/broadcast_channel.ts"
 
 import {
   X as XIcon,
@@ -526,30 +472,6 @@ export default {
         }
       });
     },
-    registerBroadcastChannel: async function () {
-      // uses session storage to identify the tab so we can ignore incoming messages from the same tab
-      if (!sessionStorage.getItem("tabId")) {
-        sessionStorage.setItem(
-          "tabId",
-          Math.random().toString(36).substring(2) +
-            new Date().getTime().toString(36)
-        );
-      }
-      const tabId = sessionStorage.getItem("tabId");
-      const channel = new BroadcastChannel("app_channel");
-      channel.postMessage({ type: "new_tab_opened", senderId: tabId });
-      channel.onmessage = async (event) => {
-        // console.log("Received message in tab " + tabId, event.data);
-        if (event.data.senderId === tabId) {
-          return; // Ignore the message if it comes from the same tab
-        }
-        if (event.data.type == "new_tab_opened") {
-          channel.postMessage({ type: "already_running", senderId: tabId });
-        } else if (event.data.type == "already_running") {
-          this.$router.push("/already-running");
-        }
-      };
-    },
   },
   watch: {},
 
@@ -561,7 +483,7 @@ export default {
 
   created: async function () {
     // check if another tab is open
-    this.registerBroadcastChannel();
+    registerBroadcastChannel(this.$router);
 
     let params = new URL(document.location).searchParams;
     let hash = new URL(document.location).hash;

@@ -1,3 +1,4 @@
+
 const routes = [
   {
     path: "/",
@@ -5,6 +6,14 @@ const routes = [
     children: [
       { path: "", component: () => import("src/pages/WalletPage.vue") },
     ],
+  },
+  {
+    path: "/embedded",
+    component: () => import("layouts/EmbeddedLayout.vue")
+  },
+  {
+    path: "/embedded/request-funds/:asset/:amount",
+    component: () => import("pages/embedded/RequestFunds.vue")
   },
   {
     path: "/settings",

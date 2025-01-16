@@ -1,0 +1,21 @@
+<body>
+    <h1>This is a site, click here to request funds: <button onclick="request()">request funds</button>
+    </h1>
+</body>
+<script src="https://localhost:8080/src/embed-client.ts"></script>
+<script>
+function request() {
+
+  // Example: Request funds
+  window.cashu.requestFunds(
+    { asset: "sat", amount: parseInt(Math.random() * 100000) },
+    (response) => {
+      if (response.proofs) {
+        alert("Funds request approved, use these proofs: " + response.proofs.join(","));
+      } else {
+        console.log("Funds request rejected");
+      }
+    }
+  );
+}
+</script>
