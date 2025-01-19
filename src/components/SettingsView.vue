@@ -6,11 +6,11 @@
         <q-item>
           <q-item-section>
             <q-item-label overline class="text-weight-bold"
-              >Backup seed phrase</q-item-label
+              >Conserva la tua seed phrase</q-item-label
             >
             <q-item-label caption
-              >Your seed phrase can restore your wallet. Keep it safe and
-              private.
+              >La vostra seed phrase può ripristinare il vostro portafoglio.
+              Tenetela al sicuro e privata.
             </q-item-label>
             <div class="row q-pt-md">
               <div class="col-12">
@@ -54,13 +54,13 @@
         <q-item>
           <q-item-section>
             <q-item-label overline class="text-weight-bold"
-              >Restore ecash</q-item-label
+              >Ripristina ecash</q-item-label
             >
             <q-item-label caption
-              >The restore wizard lets you recover lost ecash from a mnemonic
-              seed phrase. The seed phrase of your current wallet will remain
-              unaffected, the wizard will only allow you to <i>restore</i> ecash
-              from another seed phrase.</q-item-label
+              >La procedura guidata di ripristino consente di recuperare gli ecash persi da una seed phrase mnemonica.
+              La seed phrase del vostro portafoglio attuale rimarrà inalterata,
+              la procedura guidata vi permetterà solo di <i>ripristinare</i>
+              ecash da un'altra seed phrase.</q-item-label
             >
           </q-item-section>
         </q-item>
@@ -72,7 +72,7 @@
             rounded
             outline
             to="/restore"
-            >Restore</q-btn
+            >Ripristina</q-btn
           >
         </q-item>
       </q-list>
@@ -83,10 +83,10 @@
         <q-item>
           <q-item-section>
             <q-item-label overline class="text-weight-bold"
-              >Lightning address</q-item-label
+              >Indirizzo Lightning</q-item-label
             >
             <q-item-label caption
-              >Receive payments to your Lightning address.</q-item-label
+              >Ricevi pagamenti al tuo indirizzo Lightning.</q-item-label
             >
           </q-item-section>
         </q-item>
@@ -96,9 +96,9 @@
             <div class="row q-pt-md">
               <q-toggle v-model="npcEnabled" color="primary" />
               <q-item-section>
-                <q-item-label title>Enable</q-item-label>
+                <q-item-label title>Abilita</q-item-label>
                 <q-item-label caption>
-                  Lightning address with npub.cash
+                  Indirizzo Lightning con npub.cash
                 </q-item-label>
               </q-item-section>
             </div>
@@ -118,7 +118,7 @@
                       color="grey"
                       class="q-mr-sm cursor-pointer"
                     >
-                      <q-tooltip>Copy Lightning address</q-tooltip>
+                      <q-tooltip>Copia indirizzo Lightning</q-tooltip>
                     </q-icon>
                   </template>
                 </q-input>
@@ -126,9 +126,9 @@
               <div class="row q-pt-md">
                 <q-toggle v-model="automaticClaim" color="primary" />
                 <q-item-section>
-                  <q-item-label title>Claim automatically</q-item-label>
+                  <q-item-label title>Rivendica automaticamente</q-item-label>
                   <q-item-label caption
-                    >Receive incoming payments automatically.
+                    >Ricevi automaticamente i pagamenti in entrata.
                   </q-item-label>
                 </q-item-section>
               </div>
@@ -136,9 +136,9 @@
           </q-item>
           <q-item>
             <q-item-section>
-              <q-item-label overline>Your nostr keys</q-item-label>
+              <q-item-label overline>Le tue chiavi nostr</q-item-label>
               <q-item-label caption
-                >Set the nostr keys for your Lightning address.</q-item-label
+                >Imposta le chiavi nostr per il tuo indirizzo Lightning.</q-item-label
               >
             </q-item-section>
           </q-item>
@@ -165,9 +165,9 @@
               class="cursor-pointer"
               style="word-break: break-word"
             >
-              <q-item-label title>Wallet seed phrase</q-item-label>
+              <q-item-label title>Seed phrase del portafoglio</q-item-label>
               <q-item-label caption
-                >Generate nostr key pair from wallet seed
+                >Genera una coppia di chiavi nostr dal seme del portafoglio
               </q-item-label>
               <q-item-label
                 caption
@@ -185,7 +185,7 @@
                     color="grey"
                     class="q-mr-xs"
                   ></q-icon
-                  >Copy nsec
+                  >Copia nsec
                 </q-badge>
               </q-item-label>
             </q-item-section>
@@ -215,14 +215,14 @@
               style="word-break: break-word"
             >
               <q-item-label title>Nsec Bunker</q-item-label>
-              <q-item-label caption>Use a NIP-46 bunker </q-item-label>
+              <q-item-label caption>Usa un bunker NIP-46</q-item-label>
             </q-item-section>
             <q-item-section side v-if="signerType === 'NIP46'">
               <q-icon
                 name="delete_outline"
                 @click="handleResetNip46Signer"
                 class="cursor-pointer"
-                ><q-tooltip>Delete connection</q-tooltip>
+                ><q-tooltip>Elimina connessione</q-tooltip>
               </q-icon>
             </q-item-section>
           </q-item>
@@ -248,9 +248,9 @@
               class="cursor-pointer"
               style="word-break: break-word"
             >
-              <q-item-label title>Use your nsec</q-item-label>
+              <q-item-label title>Usa la tua nsec</q-item-label>
               <q-item-label caption
-                >This method is dangerous and not recommended
+                >Questo metodo è pericoloso e non raccomandato
               </q-item-label>
             </q-item-section>
             <q-item-section side v-if="signerType === 'PRIVATEKEY'">
@@ -258,7 +258,7 @@
                 name="delete_outline"
                 @click="handleResetPrivateKeySigner"
                 class="cursor-pointer"
-                ><q-tooltip>Delete nsec</q-tooltip></q-icon
+                ><q-tooltip>Cancella nsec</q-tooltip></q-icon
               >
             </q-item-section>
           </q-item>
@@ -286,12 +286,12 @@
               class="cursor-pointer"
               style="word-break: break-word"
             >
-              <q-item-label title>Signing extension</q-item-label>
+              <q-item-label title>Firma con l'estensione</q-item-label>
               <q-item-label caption v-if="nip07SignerAvailable"
-                >Use a NIP-07 signing extension
+                >Usa l'estensione NIP-07 per firmare
               </q-item-label>
               <q-item-label caption v-else
-                >No NIP-07 signing extension found
+                >Nessuna estensione NIP-07 per firmare trovata
               </q-item-label>
             </q-item-section>
           </q-item>
@@ -304,19 +304,19 @@
       <q-item class="q-pt-lg">
         <q-item-section>
           <q-item-label overline class="text-weight-bold"
-            >Payment requests</q-item-label
+            >Richieste di pagamento</q-item-label
           >
           <q-item-label caption
-            >Payment requests allow you to receive payments via nostr. If you
-            enable this, your wallet will subscribe to your nostr
-            relays.</q-item-label
+            >Le richieste di pagamento consentono di ricevere pagamenti tramite nostr.
+            Se si attiva questa funzione, il portafoglio si iscriverà
+            ai relay nostr.</q-item-label
           >
         </q-item-section>
       </q-item>
       <q-item>
         <q-toggle
           v-model="enablePaymentRequest"
-          label="Enable Payment Requests"
+          label="Abilita Richieste di pagamento"
           color="primary"
         />
       </q-item>
@@ -328,9 +328,9 @@
           color="primary"
         />
         <q-item-section>
-          <q-item-label title>Claim automatically</q-item-label>
+          <q-item-label title>Rivendica automaticamente</q-item-label>
           <q-item-label caption
-            >Receive incoming payments automatically.
+            >Ricevi automaticamente i pagamenti in entrata.
           </q-item-label>
         </q-item-section>
       </q-item>
@@ -347,14 +347,14 @@
               >Nostr Wallet Connect (NWC)</q-item-label
             >
             <q-item-label caption
-              >Use NWC to control your wallet from any other
-              application.</q-item-label
+              >Usa NWC per controllare il tuo portafoglio da un'altra
+              applicazione.</q-item-label
             >
           </q-item-section>
         </q-item>
         <!-- use a q-toggle to turn nwc on and off -->
         <q-item>
-          <q-toggle v-model="enableNwc" label="Enable NWC" color="primary" />
+          <q-toggle v-model="enableNwc" label="Abilita NWC" color="primary" />
         </q-item>
         <!-- <q-item>
           <q-btn
@@ -371,8 +371,8 @@
           <q-item-section>
             <!-- <q-item-label overline>Connections</q-item-label> -->
             <q-item-label caption
-              >You can only use NWC for payments from your Bitcoin balance.
-              Payments will be made from your active mint.
+              >È possibile utilizzare NWC solo per i pagamenti dal proprio saldo Bitcoin.
+              I pagamenti saranno effettuati dalla vostra mint attiva.
             </q-item-label>
           </q-item-section>
         </q-item>
@@ -391,7 +391,7 @@
                 size="1.3em"
                 color="grey"
                 class="q-mr-sm cursor-pointer"
-                ><q-tooltip>Copy connection string</q-tooltip></q-icon
+                ><q-tooltip>Copia stringa di connessioneg</q-tooltip></q-icon
               >
             </q-item-section>
             <q-item-section
@@ -405,7 +405,7 @@
                 color="grey"
                 class="q-mr-sm cursor-pointer"
               >
-                <q-tooltip>Show QR code</q-tooltip>
+                <q-tooltip>Mostra QR code</q-tooltip>
               </q-icon>
             </q-item-section>
             <q-item-section style="max-width: 10rem">
@@ -433,14 +433,14 @@
             dense
             dense-toggle
             class="text-left"
-            label="Click to edit relays"
+            label="Clicca per modificare i relay"
           >
             <q-item>
               <q-item-section>
                 <q-item-label overline>Add relay</q-item-label>
                 <q-item-label caption
-                  >Nostr Wallet Connect uses nostr relays to connect your wallet
-                  to other applications.
+                  >Nostr Wallet Connect usa i relay nostr per connettere il tuo portafoglio
+                  ad altre applicazioni.
                 </q-item-label>
               </q-item-section>
             </q-item>
@@ -470,7 +470,7 @@
               <q-item-section>
                 <q-item-label overline>Relays</q-item-label>
                 <q-item-label caption
-                  >Your wallet will connect to these relays.
+                  >Il tuo portafoglio vuole connettersi a questi relay.
                 </q-item-label>
               </q-item-section>
             </q-item>
@@ -485,7 +485,7 @@
                   size="1.1em"
                   color="grey"
                   class="q-mr-sm cursor-pointer"
-                  ><q-tooltip>Copy relay</q-tooltip></q-icon
+                  ><q-tooltip>Copia relay</q-tooltip></q-icon
                 >
               </q-item-section>
               <q-item-section
@@ -541,8 +541,8 @@
                 class="cursor-pointer"
                 style="word-break: break-word"
               >
-                <q-item-label title>Text</q-item-label>
-                <q-item-label caption> Store token in plain text </q-item-label>
+                <q-item-label title>Testo</q-item-label>
+                <q-item-label caption> Memorizza il token in testo semplice </q-item-label>
               </q-item-section>
             </q-item>
             <q-item clickable @click="nfcEncoding = 'weburl'">
@@ -564,7 +564,7 @@
               >
                 <q-item-label title>URL</q-item-label>
                 <q-item-label caption>
-                  Store URL to this wallet with token
+                  Memorizza l'URL del portafoglio con il token
                 </q-item-label>
               </q-item-section>
             </q-item>
@@ -596,13 +596,13 @@
             <q-item>
               <q-toggle
                 v-model="showNfcButtonInDrawer"
-                label="Quick access to NFC"
+                label="Accesso rapido a NFC"
                 color="primary"
               /> </q-item
             ><q-item class="q-pt-none">
               <q-item-label caption
-                >Quickly scan NFC cards in the Receive Ecash menu. This option
-                adds an NFC button the Receive Ecash menu.
+                >Scansione rapida delle carte NFC nel menu Ricevi Ecash. Questa opzione
+                aggiunge un pulsante NFC al menu Ricevi Ecash.
               </q-item-label>
             </q-item>
           </q-list>
@@ -617,10 +617,10 @@
                   >P2PK</q-item-label
                 >
                 <q-item-label caption
-                  >Generate a key pair to receive P2PK-locked ecash. Warning:
-                  This feature is experimental. Only use with small amounts. If
-                  you lose your private keys, nobody will be able to unlock the
-                  ecash locked to it anymore.</q-item-label
+                  >Genera una coppia di chiavi per ricevere ecash bloccati da P2PK.
+                  Attenzione: Questa funzione è sperimentale. Da usare solo con piccole quantità.
+                  Se si perdono le chiavi private, nessuno sarà più in grado di sbloccare
+                  gli ecash bloccati.</q-item-label
                 >
               </q-item-section>
             </q-item>
@@ -638,13 +638,13 @@
             <q-item>
               <q-toggle
                 v-model="showP2PkButtonInDrawer"
-                label="Quick access to lock"
+                label="Accesso rapido al blocco"
                 color="primary"
               /> </q-item
             ><q-item class="q-pt-none">
               <q-item-label caption
-                >Use this to quickly show your P2PK locking key in the receive
-                ecash menu.
+                >Utilizzare questa funzione per mostrare brevemente la chiave di bloccaggio P2PK nel menu di
+                ricezione di ecash.
               </q-item-label>
             </q-item>
           </q-list>
@@ -710,7 +710,7 @@
               >Privacy</q-item-label
             >
             <q-item-label caption>
-              These settings affect your privacy.
+              Queste impostazioni influiscono sulla privacy dell'utente.
             </q-item-label>
           </q-item-section>
         </q-item>
@@ -719,39 +719,39 @@
           <q-item>
             <q-toggle
               v-model="checkIncomingInvoices"
-              label="Check incoming invoice"
+              label="Controllo della fattura in entrata"
               color="primary"
             >
             </q-toggle>
           </q-item>
           <q-item class="q-pt-none">
             <q-item-label caption
-              >If enabled, the wallet will check the latest invoice in the
-              background. This increases the wallet's responsiveness which makes
-              fingerprinting easier. You can manually check unpaid invoices in
-              the Invoices tab.
+              >Se abilitato, il portafoglio controlla l'ultima fattura in background.
+              Questo aumenta la reattività del portafoglio e facilita il rilevamento delle impronte digitali.
+              È possibile controllare manualmente le fatture non pagate
+              nella scheda Fatture.
             </q-item-label>
           </q-item>
           <!-- check pending invoices on startup -->
           <q-item>
             <q-toggle
               v-model="checkInvoicesOnStartup"
-              label="Check pending invoices on startup"
+              label="Controllo delle fatture in sospeso all'avvio"
               color="primary"
             >
             </q-toggle>
           </q-item>
           <q-item class="q-pt-none">
             <q-item-label caption
-              >If enabled, the wallet will check pending invoices from the last
-              24 hours on startup.
+              >Se abilitato, all'avvio il portafoglio controlla le fatture in sospeso
+              delle ultime 24 ore.
             </q-item-label>
           </q-item>
           <!-- periodically check incoming invoices -->
           <q-item>
             <q-toggle
               v-model="periodicallyCheckIncomingInvoices"
-              label="Check all invoices"
+              label="Controlla tutte le fatture"
               color="primary"
             >
               <q-badge color="primary" label="Beta" class="q-mx-sm"></q-badge>
@@ -759,10 +759,10 @@
           </q-item>
           <q-item class="q-pt-none">
             <q-item-label caption
-              >If enabled, the wallet will periodically check unpaid invoices in
-              the background for up to two weeks. This increases the wallet's
-              online activity which makes fingerprinting easier. You can
-              manually check unpaid invoices in the Invoices tab.
+              >Se abilitato, il portafoglio controlla periodicamente le fatture non pagate in background per un massimo di due settimane.
+              Questo aumenta l'attività online del portafoglio e facilita il rilevamento delle impronte digitali.
+              È possibile controllare manualmente le fatture non pagate
+              nella scheda Fatture.
             </q-item-label>
           </q-item>
 
@@ -770,14 +770,15 @@
           <q-item>
             <q-toggle
               v-model="checkSentTokens"
-              label="Check sent ecash"
+              label="Controlla ecach inviati"
               color="primary"
             /> </q-item
           ><q-item class="q-pt-none">
             <q-item-label caption
-              >If enabled, the wallet will use periodic background checks to
-              determine if sent tokens have been redeemed. This increases the
-              wallet's online activity which makes fingerprinting easier.
+              >Se abilitato, il portafoglio utilizzerà controlli periodici per determinare
+              se i tokens inviati sono stati riscattati.
+              Questo aumenta l'attività online del portafoglio e
+              facilita il rilevamento delle impronte digitali.
             </q-item-label>
           </q-item>
           <!-- websockets -->
@@ -785,7 +786,7 @@
             <q-toggle
               v-if="checkIncomingInvoices || checkSentTokens"
               v-model="useWebsockets"
-              label="Use WebSockets"
+              label="Usa WebSockets"
               color="primary"
               ><q-badge color="primary" label="Beta" class="q-mx-sm"></q-badge>
             </q-toggle> </q-item
@@ -794,23 +795,23 @@
             v-if="checkIncomingInvoices || checkSentTokens"
           >
             <q-item-label caption
-              >If enabled, the wallet will use long-lived WebSocket connections
-              to receive updates on paid invoices and spent tokens from mints.
-              This increases the wallet's responsiveness but also makes
-              fingerprinting easier.
+              >Se abilitato, il portafoglio utilizzerà connessioni WebSocket a lunga durata
+              per ricevere aggiornamenti sulle fatture pagate e sui token spesi dalle zecche.
+              Questo aumenta la reattività del portafoglio,
+              ma rende anche più facile il rilevamento delle impronte digitali.
             </q-item-label>
           </q-item>
           <!-- price check setting -->
           <q-item>
             <q-toggle
               v-model="getBitcoinPrice"
-              label="Get exchange rate from Coinbase"
+              label="Ottieni il tasso di cambio da Coinbase"
               color="primary"
             /> </q-item
           ><q-item class="q-pt-none">
             <q-item-label caption
-              >If enabled, the current Bitcoin exchange rate will be fetched
-              from coinbase.com and your converted balance will be displayed.
+              >Se abilitato, il tasso di cambio corrente di Bitcoin verrà recuperato da coinbase.com
+              e verrà visualizzato il saldo convertito.
             </q-item-label>
           </q-item>
         </div>
@@ -829,7 +830,7 @@
         <q-item>
           <q-toggle
             v-model="enableReceiveSwaps"
-            label="Receive swaps"
+            label="Ricevi scambi"
             color="primary"
           >
             <q-badge color="primary" label="Beta" class="q-mx-sm"></q-badge>
@@ -837,21 +838,21 @@
         </q-item>
         <q-item class="q-pt-none">
           <q-item-label caption
-            >Option to swap received Ecash to your active mint in the Receive
-            Ecash dialog.
+            >Opzione per scambiare l'Ecash ricevuto con la propria mint attiva
+            nella finestra di dialogo Ricevi Ecash.
           </q-item-label>
         </q-item>
         <q-item>
           <q-toggle
             v-model="autoPasteEcashReceive"
-            label="Paste Ecash automatically"
+            label="Incolla Ecash automaticamente"
             color="primary"
           /> </q-item
         ><q-item class="q-pt-none">
           <q-item-label caption
-            >Automatically paste ecash in your clipboard when you press Receive,
-            then Ecash, then Paste. Automatic pasting can cause UI glitches in
-            iOS, turn it off if you experience issues.
+            >Incollare automaticamente ecash negli appunti quando si preme Ricevi, poi Ecash, poi Incolla.
+            L'incollaggio automatico può causare problemi all'interfaccia utente in iOS;
+            disattivatelo se riscontrate problemi.
           </q-item-label>
         </q-item>
 
@@ -864,20 +865,20 @@
                   >On-screen keyboard</q-item-label
                 >
                 <q-item-label caption
-                  >Use the numeric keyboard for entering amounts.</q-item-label
+                  >Usa la tastiera numerica per inserire gli importi.</q-item-label
                 >
               </q-item-section>
             </q-item>
             <q-item>
               <q-toggle
                 v-model="useNumericKeyboard"
-                label="Use numeric keyboard"
+                label="Usa tastiera numerica"
                 color="primary"
               /> </q-item
             ><q-item class="q-pt-none">
               <q-item-label caption
-                >If enabled, the numeric keyboard will be used for entering
-                amounts.
+                >Se abilitata, la tastiera numerica verrà utilizzata per inserire
+                gli importi.
               </q-item-label>
             </q-item>
           </q-list>
@@ -892,7 +893,7 @@
                   >Appearance</q-item-label
                 >
                 <q-item-label caption
-                  >Change how your wallet looks.
+                  >Cambia l'aspetto del tuo portafoglio.
                 </q-item-label>
                 <!-- <div class="row q-py-md">
               <q-btn dense flat rounded @click="toggleDarkMode" size="md"
@@ -1008,10 +1009,10 @@
           <div>
             <q-item class="q-pt-lg">
               <q-item-section>
-                <q-item-label overline>Developer settings</q-item-label>
+                <q-item-label overline>Impostazioni sviluppatore</q-item-label>
                 <q-item-label caption
-                  >The following settings are for development and
-                  debugging.</q-item-label
+                  >Le seguenti impostazioni servono per lo sviluppo
+                  e il debug.</q-item-label
                 >
               </q-item-section>
             </q-item>
@@ -1025,19 +1026,20 @@
                         flat
                         dense
                         @click="confirmMnemonic = !confirmMnemonic"
-                        >Generate new seed phrase</q-btn
+                        >Genera nuova seed phrase</q-btn
                       >
                       <row>
                         <q-item-label class="q-px-sm" caption
-                          >This will generate a new seed phrase. You must send
-                          your entire balance to yourself in order to be able to
-                          restore it with a new seed.
+                          >Questo genererà una nuova seed phrase. Dovete inviare l'intero equilibrio a sé stessi per poterlo 
+                          di ripristinarlo con un nuovo seed phrase.Questo genererà una nuova frase seme. Dovete inviare
+                          l'intero equilibrio a sé stessi per poterlo
+                          di ripristinarlo con un nuovo seme.
                         </q-item-label>
                       </row>
                     </div>
                     <div class="col-12" v-if="confirmMnemonic">
                       <span
-                        >Are you sure you want to generate a new seed phrase?
+                        >Si è sicuri di voler generare una nuova seed phrase?
                       </span>
                       <q-btn
                         flat
@@ -1045,7 +1047,7 @@
                         class="q-ml-sm"
                         color="warning"
                         @click="confirmMnemonic = false"
-                        >Cancel</q-btn
+                        >Cancella</q-btn
                       >
                       <q-btn
                         flat
@@ -1056,7 +1058,7 @@
                           confirmMnemonic = false;
                           generateNewMnemonic();
                         "
-                        >Confirm</q-btn
+                        >Conferma</q-btn
                       >
                     </div>
                   </div>
@@ -1075,9 +1077,9 @@
                     ></row
                   ><row>
                     <q-item-label class="q-px-sm" caption
-                      >Check if the ecash tokens from your active mints are
-                      spent and remove the spent ones from your wallet. Only use
-                      this if your wallet is stuck.
+                      >Controlla se i gettoni ecash delle tue mint attive sono stati spesi e
+                      rimuovi quelli spesi dal tuo portafoglio.
+                      Utilizzare solo se il portafoglio è bloccato.
                     </q-item-label>
                   </row>
                 </q-item-section>
@@ -1086,13 +1088,13 @@
                 <q-item-section>
                   <row>
                     <q-btn dense flat outline click @click="toggleTerminal">
-                      Toggle Debug Console
+                      Attiva la console di debug
                     </q-btn> </row
                   ><row>
                     <q-item-label class="q-px-sm" caption
-                      >Open the Javascript debug terminal. Never paste anything
-                      into this terminal that you don't understand. A thief
-                      might try to trick you into pasting malicious code here.
+                      >Aprire il terminale di debug Javascript.
+                      Non incollate mai in questo terminale qualcosa che non capite.
+                      Un ladro potrebbe tentare di ingannare l'utente incollando qui del codice dannoso.
                     </q-item-label>
                   </row>
                 </q-item-section>
@@ -1101,14 +1103,14 @@
                 <q-item-section>
                   <row>
                     <q-btn dense flat outline click @click="exportActiveProofs">
-                      Export active proofs
+                      Esportazione delle prove attive
                     </q-btn></row
                   ><row>
                     <q-item-label class="q-px-sm" caption
-                      >Copy your entire balance from the active mint as a Cashu
-                      token into your clipboard. This will only export the
-                      tokens from the selected mint and unit. For a full export,
-                      select a different mint and unit and export again.
+                      >Copiare l'intero saldo della mint attiva come token Cashu negli appunti.
+                      In questo modo verranno esportati solo i gettoni della mint e dell'unità selezionate.
+                      Per un'esportazione completa, selezionare una mint e un'unità diverse
+                      ed esportare nuovamente.
                     </q-item-label>
                   </row>
                 </q-item-section>
@@ -1118,14 +1120,14 @@
                   <row>
                     <!-- add a caption, not a button here -->
                     <q-item-label class="q-pb-sm"
-                      >Increment keyset counters</q-item-label
+                      >Incremento dei contatori del keyset</q-item-label
                     ></row
                   >
                   <row>
                     <q-item-label class="q-px-sm" caption
-                      >Click the keyset ID to increment the derivation path
-                      counters for the keysets in your wallet. This is useful if
-                      you see the "outputs have already been signed" error.
+                      >Fare clic sull'ID del keyset per incrementare i contatori del percorso
+                      di derivazione per i keyset nel portafoglio.
+                      Questa operazione è utile se si verifica l'errore “le uscite sono già state firmate”.
                     </q-item-label>
                   </row>
                   <row class="q-pa-sm">
@@ -1160,16 +1162,16 @@
                       click
                       @click="unsetAllReservedProofs"
                     >
-                      Unset all reserved tokens
+                      Disabilita tutti i token riservati
                     </q-btn></row
                   ><row>
                     <q-item-label class="q-px-sm" caption
-                      >This wallet marks pending outgoing ecash as reserved (and
-                      subtracts it from your balance) to prevent double-spend
-                      attempts. This button will unset all reserved tokens so
-                      they can be used again. If you do this, your wallet might
-                      include spent proofs. Press the "Remove spent proofs"
-                      button to get rid of them.
+                      >Questo portafoglio contrassegna gli ecash in uscita in attesa come
+                      riservati (e li sottrae dal proprio saldo) per evitare tentativi di doppio
+                      utilizzo. Questo pulsante disattiva tutti i token riservati in modo che
+                      possano essere utilizzati di nuovo. Se si esegue questa operazione, è
+                      possibile che il portafoglio includa delle prove esaurite. Premere il
+                      pulsante “Rimuovi le prove spese” per eliminarle.
                     </q-item-label>
                   </row>
                 </q-item-section>
@@ -1178,11 +1180,11 @@
                 <q-item-section>
                   <row>
                     <q-btn dense flat outline click @click="showOnboarding">
-                      Show onboarding
+                      Mostra procedura d'ingresso
                     </q-btn></row
                   ><row>
                     <q-item-label class="q-px-sm" caption
-                      >Show the onboarding screen again.
+                      >Mostra di nuovo la schermata della procedura d'ingresso.
                     </q-item-label>
                   </row>
                 </q-item-section>
@@ -1198,17 +1200,17 @@
                       click
                       @click="confirmNuke = !confirmNuke"
                     >
-                      Reset wallet data
+                      Resetta i dati del portafoglio
                     </q-btn></row
                   ><row v-if="!confirmNuke">
                     <q-item-label class="q-px-sm" caption
-                      >Reset your wallet data. Warning: This will delete
-                      everything! Make sure you create a backup first.
+                      >Resettare i dati del portafoglio. Attenzione: Questa operazione
+                      cancellerà tutto! Assicuratevi di aver creato prima un backup.
                     </q-item-label>
                   </row>
                   <row v-if="confirmNuke">
                     <span
-                      >Are you sure you want to delete your wallet data?</span
+                      >Siete sicuri di voler cancellare i dati del vostro portafoglio?</span
                     >
                     <q-btn
                       flat
@@ -1227,7 +1229,7 @@
                         confirmNuke = false;
                         nukeWallet();
                       "
-                      >Delete wallet</q-btn
+                      >Elimina portafoglio</q-btn
                     >
                   </row>
                 </q-item-section>
@@ -1236,14 +1238,14 @@
                 <q-item-section>
                   <row>
                     <q-btn dense flat outline click @click="exportWalletState">
-                      Export wallet data
+                      Esporta i dati del portafoglio
                     </q-btn></row
                   ><row>
                     <q-item-label class="q-px-sm" caption
-                      >Download a dump of your wallet. You can restore your
-                      wallet from this file in the welcome screen of a new
-                      wallet. This file will be out of sync if you keep using
-                      your wallet after exporting it.
+                      >Scaricate un archivio del vostro portafoglio. È possibile ripristinare
+                      il portafoglio da questo file nella schermata di benvenuto di un nuovo portafoglio.
+                      Questo file non sarà più sincronizzato se si continua a utilizzare
+                      il portafoglio dopo averlo esportato.
                     </q-item-label>
                   </row>
                 </q-item-section>
